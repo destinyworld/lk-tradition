@@ -10,33 +10,74 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as HousesRouteImport } from './routes/houses'
+import { Route as RemediesRouteImport } from './routes/remedies'
+import { Route as PlanetsIndexRouteImport } from './routes/planets.index'
+import { Route as PlanetsSlugRouteImport } from './routes/planets.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HousesRoute = HousesRouteImport.update({
+  id: '/houses',
+  path: '/houses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RemediesRoute = RemediesRouteImport.update({
+  id: '/remedies',
+  path: '/remedies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlanetsIndexRoute = PlanetsIndexRouteImport.update({
+  id: '/planets/',
+  path: '/planets/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlanetsSlugRoute = PlanetsSlugRouteImport.update({
+  id: '/planets/$slug',
+  path: '/planets/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/houses': typeof HousesRoute
+  '/remedies': typeof RemediesRoute
+  '/planets/$slug': typeof PlanetsSlugRoute
+  '/planets/': typeof PlanetsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/houses': typeof HousesRoute
+  '/remedies': typeof RemediesRoute
+  '/planets/$slug': typeof PlanetsSlugRoute
+  '/planets': typeof PlanetsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/houses': typeof HousesRoute
+  '/remedies': typeof RemediesRoute
+  '/planets/$slug': typeof PlanetsSlugRoute
+  '/planets/': typeof PlanetsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/houses' | '/remedies' | '/planets/$slug' | '/planets/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/houses' | '/remedies' | '/planets/$slug' | '/planets'
+  id:
+    '__root__' | '/' | '/houses' | '/remedies' | '/planets/$slug' | '/planets/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  HousesRoute: typeof HousesRoute
+  RemediesRoute: typeof RemediesRoute
+  PlanetsSlugRoute: typeof PlanetsSlugRoute
+  PlanetsIndexRoute: typeof PlanetsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +89,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/houses': {
+      id: '/houses'
+      path: '/houses'
+      fullPath: '/houses'
+      preLoaderRoute: typeof HousesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/remedies': {
+      id: '/remedies'
+      path: '/remedies'
+      fullPath: '/remedies'
+      preLoaderRoute: typeof RemediesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/planets/': {
+      id: '/planets/'
+      path: '/planets'
+      fullPath: '/planets/'
+      preLoaderRoute: typeof PlanetsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/planets/$slug': {
+      id: '/planets/$slug'
+      path: '/planets/$slug'
+      fullPath: '/planets/$slug'
+      preLoaderRoute: typeof PlanetsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  HousesRoute: HousesRoute,
+  RemediesRoute: RemediesRoute,
+  PlanetsSlugRoute: PlanetsSlugRoute,
+  PlanetsIndexRoute: PlanetsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

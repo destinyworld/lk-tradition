@@ -1,26 +1,46 @@
-# Lal Kitab Insight (19)
+# Lal Kitab Insights
 
-Create an app based on Lal Kitab knowledge like https://1wjkp4obbw2-live.yw.app
-
-This project was built with [Lovable](https://lovable.dev).
-
-**Live app**: https://ancient-karma-guide.lovable.app
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/59d87b4a-436f-413e-b21d-f51879b55099).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+An interactive application built on Lal Kitab knowledge to help users discover remedies, insights, and astrological guides to balance their karma.
 
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Prefer working locally? You need Node.js and Bun (or npm/yarn).
+
+### Install Dependencies
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+bun install
 ```
+
+### Start Development Server
+
+```sh
+bun run dev
+```
+
+### Build for Production
+
+```sh
+bun run build
+```
+
+## Create a single deployable folder
+
+This application uses server-side rendering, so it must run on a Node.js web
+server. Create the complete deployment folder with:
+
+```sh
+npm run package
+```
+
+The command creates `dist-prod/`, including the compiled client and server
+artifacts, `server-runner.js`, and production dependencies. Copy that entire
+folder to the server and run:
+
+```sh
+npm start
+```
+
+The default port is `3000`; set `PORT` to change it. Keep the `dist` directory
+inside `dist-prod` because TanStack Start uses both its client and server
+artifacts at runtime.

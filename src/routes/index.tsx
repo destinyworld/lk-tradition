@@ -44,12 +44,6 @@ const pillars = [
     body: "Simple, household remedies — water to the Sun, silver in the pocket, a lamp under the peepal.",
     to: "/remedies" as const,
   },
-  {
-    icon: Compass,
-    title: "Placement Explorer",
-    body: "Set each planet's house and read the combined verdict with the remedies it calls for.",
-    to: "/explorer" as const,
-  },
 ];
 
 function Home() {
@@ -70,14 +64,8 @@ function Home() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                to="/explorer"
-                className="surface-lac inline-flex items-center gap-2 rounded-sm border rule-gold px-5 py-2.5 text-sm font-medium transition-transform hover:-translate-y-0.5"
-              >
-                Open the explorer
-              </Link>
-              <Link
                 to="/planets"
-                className="inline-flex items-center gap-2 rounded-sm border border-border bg-card px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
+                className="surface-lac inline-flex items-center gap-2 rounded-sm border rule-gold px-5 py-2.5 text-sm font-medium transition-transform hover:-translate-y-0.5"
               >
                 Browse the planets
               </Link>
@@ -111,8 +99,8 @@ function Home() {
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-16">
-        <h2 className="text-3xl text-foreground">Four ways in</h2>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <h2 className="text-3xl text-foreground">Three ways in</h2>
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {pillars.map((p) => (
             <Link key={p.title} to={p.to} className="leaf group rounded-sm p-6">
               <p.icon className="h-5 w-5 text-primary" strokeWidth={1.6} />

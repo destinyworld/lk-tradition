@@ -113,7 +113,12 @@
 
   --shadow-leaf: 0 1px 0 0 oklch(1 0 0 / 60%) inset, 0 12px 30px -18px oklch(0.24 0.03 40 / 45%);
   --gradient-lac: linear-gradient(150deg, oklch(0.36 0.16 25), oklch(0.28 0.1 22));
-  --gradient-gold: linear-gradient(100deg, oklch(0.62 0.1 70), oklch(0.82 0.11 88), oklch(0.62 0.1 70));
+  --gradient-gold: linear-gradient(
+    100deg,
+    oklch(0.62 0.1 70),
+    oklch(0.82 0.11 88),
+    oklch(0.62 0.1 70)
+  );
 }
 
 .dark {
@@ -152,8 +157,12 @@
     background-image:
       radial-gradient(oklch(0.42 0.17 25 / 4%) 1px, transparent 1px),
       radial-gradient(oklch(0.68 0.11 78 / 5%) 1px, transparent 1px);
-    background-size: 22px 22px, 34px 34px;
-    background-position: 0 0, 11px 17px;
+    background-size:
+      22px 22px,
+      34px 34px;
+    background-position:
+      0 0,
+      11px 17px;
   }
 
   h1,

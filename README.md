@@ -24,6 +24,10 @@ bun run dev
 bun run build
 ```
 
+For a Node.js server deployment where build-time prerendering is unavailable,
+use `npm run build:server`. This builds the SSR server and client without making
+prerender requests during the build; the running server still renders pages.
+
 ## Run as an Android app
 
 Install Android Studio with its Android SDK, then build and sync the local web app:
@@ -58,3 +62,8 @@ npm start
 The default port is `3000`; set `PORT` to change it. Keep the `dist` directory
 inside `dist-prod` because TanStack Start uses both its client and server
 artifacts at runtime.
+
+For GitHub-based Node.js hosting, use `npm run build:server` as the build
+command and `npm start` as the start command. The regular `npm run build`
+continues to prerender pages for deployments that need a static client build,
+such as the Android app.

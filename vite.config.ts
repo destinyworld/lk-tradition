@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import tailwindcss from "@tailwindcss/vite";
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   resolve: {
     tsconfigPaths: true,
   },
@@ -12,10 +12,10 @@ export default defineConfig({
     tanstackStart({
       server: { entry: "server" },
       prerender: {
-        enabled: true,
+        enabled: mode !== "server",
         failOnError: true,
       },
     }),
     react(),
   ],
-});
+}));

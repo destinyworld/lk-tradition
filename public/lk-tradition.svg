@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="seal" x1="16" x2="116" y1="8" y2="122" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7b2a35"/>
+      <stop offset="1" stop-color="#43151f"/>
+    </linearGradient>
+    <linearGradient id="foil" x1="30" x2="98" y1="26" y2="106" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f3d89b"/>
+      <stop offset="1" stop-color="#c0914b"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="120" height="120" rx="34" fill="url(#seal)"/>
+  <rect x="11" y="11" width="106" height="106" rx="28" fill="none" stroke="url(#foil)" stroke-opacity=".72" stroke-width="2"/>
+  <path d="M64 22L68.2 33.5L79.7 29.3L75.5 40.8L87 45L75.5 49.2L79.7 60.7L68.2 56.5L64 68L59.8 56.5L48.3 60.7L52.5 49.2L41 45L52.5 40.8L48.3 29.3L59.8 33.5L64 22Z" fill="url(#foil)" fill-opacity=".48"/>
+  <text x="64" y="92" fill="url(#foil)" font-family="Georgia, 'Times New Roman', serif" font-size="43" font-weight="600" letter-spacing="-4" text-anchor="middle">LK</text>
+  <circle cx="64" cy="103" r="2.3" fill="#f3d89b"/>
+</svg>

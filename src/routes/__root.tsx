@@ -72,29 +72,39 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lal Kitab Insights" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
+      { name: "application-name", content: "LK Tradition" },
+      { name: "apple-mobile-web-app-title", content: "LK Tradition" },
+      { name: "theme-color", content: "#641e2d" },
+      { title: "LK Tradition" },
       {
         name: "description",
         content:
-          "Discover ancient Lal Kitab remedies, insights, and astrological guides to balance your karma.",
+          "LK Tradition — an elegant guide to Lal Kitab planets, houses, and traditional practices.",
       },
-      { name: "author", content: "Lal Kitab Insights" },
-      { property: "og:title", content: "Lal Kitab Insights" },
+      { name: "author", content: "LK Tradition" },
+      { property: "og:site_name", content: "LK Tradition" },
+      { property: "og:title", content: "LK Tradition" },
       {
         property: "og:description",
-        content:
-          "Discover ancient Lal Kitab remedies, insights, and astrological guides to balance your karma.",
+        content: "An elegant guide to Lal Kitab planets, houses, and traditional practices.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "LK Tradition" },
+      {
+        name: "twitter:description",
+        content: "An elegant guide to Lal Kitab planets, houses, and traditional practices.",
+      },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/lk-tradition.svg", type: "image/svg+xml" },
+      { rel: "alternate icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
     ],
   }),
   shellComponent: RootShell,

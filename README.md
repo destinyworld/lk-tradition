@@ -1,6 +1,6 @@
-# Lal Kitab Insights
+# LK Tradition
 
-An interactive application built on Lal Kitab knowledge to help users discover remedies, insights, and astrological guides to balance their karma.
+An elegant, responsive companion for exploring Lal Kitab planets, houses, and traditional practices.
 
 ## Development
 
@@ -23,6 +23,20 @@ bun run dev
 ```sh
 bun run build
 ```
+
+## Run as an Android app
+
+Install Android Studio with its Android SDK, then build and sync the local web app:
+
+```sh
+npm run android:sync
+npm run android:open
+```
+
+In Android Studio, wait for Gradle sync and launch the `app` configuration on an
+emulator or connected device. The Android app loads the prerendered single-page
+web experience from `dist/client`; run `npm run android:sync` again after web
+changes to refresh the native project assets.
 
 ## Create a single deployable folder
 

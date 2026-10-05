@@ -23,7 +23,10 @@ fs.cpSync(path.resolve(srcDir, "dist"), path.resolve(destDir, "dist"), { recursi
 
 // Copy server-runner.js
 console.log("Copying server-runner.js...");
-fs.copyFileSync(path.resolve(srcDir, "server-runner.js"), path.resolve(destDir, "server-runner.js"));
+fs.copyFileSync(
+  path.resolve(srcDir, "server-runner.js"),
+  path.resolve(destDir, "server-runner.js"),
+);
 
 // Read original package.json
 console.log("Generating production package.json...");
@@ -37,17 +40,18 @@ const prodPkg = {
   private: true,
   type: "module",
   scripts: {
-    start: "node server-runner.js"
+    start: "node server-runner.js",
   },
-  dependencies: {}
+  dependencies: {},
 };
 
 // Filter out devDependencies and keep only build-essential dependencies
 const excludedDeps = [
   "@tailwindcss/vite",
+  "@capacitor/android",
+  "@capacitor/core",
   "@tanstack/router-plugin",
-  "vite-tsconfig-paths",
-  "tailwindcss"
+  "tailwindcss",
 ];
 
 for (const [dep, version] of Object.entries(pkg.dependencies || {})) {
@@ -56,11 +60,7 @@ for (const [dep, version] of Object.entries(pkg.dependencies || {})) {
   }
 }
 
-fs.writeFileSync(
-  path.resolve(destDir, "package.json"),
-  JSON.stringify(prodPkg, null, 2),
-  "utf8"
-);
+fs.writeFileSync(path.resolve(destDir, "package.json"), JSON.stringify(prodPkg, null, 2), "utf8");
 
 console.log("Installing production dependencies...");
 execSync("npm install --omit=dev", { stdio: "inherit", cwd: destDir });
@@ -83,10 +83,6 @@ The server runs on http://localhost:3000 by default. Configure it with the PORT
 environment variable.
 `;
 
-fs.writeFileSync(
-  path.resolve(destDir, "README.md"),
-  readmeContent,
-  "utf8"
-);
+fs.writeFileSync(path.resolve(destDir, "README.md"), readmeContent, "utf8");
 
 console.log(`\nSuccess! Standalone production folder created at:\n  ${destDir}\n`);

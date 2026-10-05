@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Lal Kitab design system — "the red book".
- * Parchment surfaces, deep lac-red ink, antique gold leaf.
+ * LK Tradition design system.
+ * Warm parchment, deep garnet, and antique gold.
  * All colors are oklch semantic tokens. Never hardcode colors in components.
  */
 
@@ -19,8 +19,8 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
 
-  --font-display: "Marcellus", "Cormorant Garamond", serif;
-  --font-sans: "Karla", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Baskerville Old Face", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --font-sans: "Aptos", "Avenir Next", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -62,20 +62,20 @@
 }
 
 :root {
-  --radius: 0.35rem;
+  --radius: 0.55rem;
 
   --parchment: oklch(0.955 0.018 84);
   --ink: oklch(0.24 0.03 40);
 
-  --background: oklch(0.962 0.016 84);
-  --foreground: oklch(0.24 0.03 40);
-  --card: oklch(0.983 0.012 88);
-  --card-foreground: oklch(0.24 0.03 40);
-  --popover: oklch(0.983 0.012 88);
-  --popover-foreground: oklch(0.24 0.03 40);
+  --background: oklch(0.972 0.012 82);
+  --foreground: oklch(0.235 0.025 32);
+  --card: oklch(0.99 0.009 86);
+  --card-foreground: oklch(0.235 0.025 32);
+  --popover: oklch(0.99 0.009 86);
+  --popover-foreground: oklch(0.235 0.025 32);
 
-  --primary: oklch(0.42 0.17 25);
-  --primary-foreground: oklch(0.97 0.015 85);
+  --primary: oklch(0.39 0.14 18);
+  --primary-foreground: oklch(0.98 0.01 85);
 
   --secondary: oklch(0.918 0.028 82);
   --secondary-foreground: oklch(0.32 0.06 32);
@@ -86,7 +86,7 @@
   --accent: oklch(0.9 0.05 80);
   --accent-foreground: oklch(0.3 0.08 40);
 
-  --gold: oklch(0.68 0.11 78);
+  --gold: oklch(0.71 0.105 77);
   --gold-foreground: oklch(0.24 0.05 45);
 
   --destructive: oklch(0.52 0.2 27);
@@ -94,7 +94,7 @@
 
   --border: oklch(0.855 0.032 78);
   --input: oklch(0.855 0.032 78);
-  --ring: oklch(0.42 0.17 25);
+  --ring: oklch(0.39 0.14 18);
 
   --chart-1: oklch(0.42 0.17 25);
   --chart-2: oklch(0.68 0.11 78);
@@ -151,9 +151,14 @@
   }
 
   body {
+    min-width: 320px;
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1;
+    text-rendering: optimizeLegibility;
     background-image:
       radial-gradient(oklch(0.42 0.17 25 / 4%) 1px, transparent 1px),
       radial-gradient(oklch(0.68 0.11 78 / 5%) 1px, transparent 1px);
@@ -165,6 +170,11 @@
       11px 17px;
   }
 
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
   h1,
   h2,
   h3,
@@ -173,6 +183,187 @@
     font-family: var(--font-display);
     font-weight: 400;
     letter-spacing: 0.01em;
+  }
+
+  .animate-rise {
+    animation: rise-in 650ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+  }
+
+  .animate-float {
+    animation: float-in 850ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+  }
+
+  .planet-card {
+    animation: rise-in 650ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+  }
+
+  .planet-dialog {
+    transform-origin: center;
+    animation: pop-in 360ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .house-flash-card {
+    perspective: 1200px;
+    animation: rise-in 560ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .house-flash-inner {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 520ms cubic-bezier(0.2, 0.75, 0.25, 1);
+  }
+
+  .house-flash-card:hover .house-flash-inner {
+    transform: translateY(-2px);
+  }
+
+  .house-flash-card[data-flipped="true"] .house-flash-inner {
+    transform: rotateY(180deg);
+  }
+
+  .house-flash-face {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 1rem;
+    padding: 1rem;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .house-flash-front {
+    text-align: left;
+  }
+
+  .house-flash-back {
+    transform: rotateY(180deg);
+    border: 1px solid color-mix(in oklab, var(--color-gold) 65%, transparent);
+    background-image: var(--gradient-lac);
+    box-shadow: var(--shadow-leaf);
+  }
+
+  .term-accordion {
+    animation: rise-in 560ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+  }
+
+  .term-accordion[open] {
+    border-color: color-mix(in oklab, var(--color-gold) 70%, transparent);
+  }
+
+  .relationship-marquee {
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in oklab, var(--color-gold) 60%, transparent) transparent;
+    -webkit-overflow-scrolling: touch;
+    mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
+  }
+
+  .relationship-track {
+    display: flex;
+    width: max-content;
+    animation: relationship-scroll 48s linear infinite;
+  }
+
+  .relationship-group {
+    display: flex;
+    flex: none;
+    gap: 1rem;
+    padding-right: 1rem;
+  }
+
+  .relationship-card {
+    width: clamp(16rem, 29vw, 21rem);
+    min-height: 11rem;
+    border-radius: 1.25rem;
+    padding: 1.15rem;
+    white-space: normal;
+  }
+
+  .relationship-marquee:hover .relationship-track,
+  .relationship-marquee:focus-within .relationship-track,
+  .relationship-marquee.is-paused .relationship-track {
+    animation-play-state: paused;
+  }
+
+  .relationship-marquee:focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 4px;
+  }
+
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float-in {
+    from {
+      opacity: 0;
+      transform: translateY(18px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes pop-in {
+    from {
+      opacity: 0;
+      transform: translateY(24px) scale(0.94);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes relationship-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .relationship-marquee {
+        overflow-x: auto;
+        mask-image: none;
+      }
+
+      .relationship-track {
+        animation: none;
+        transform: none;
+      }
+
+      .relationship-group[aria-hidden="true"] {
+        display: none;
+      }
+    }
   }
 }
 
